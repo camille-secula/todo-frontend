@@ -1,0 +1,22 @@
+
+<header class="header">
+    <h1>Todos</h1>
+    <input class="new-todo" placeholder="What needs to be done?" autofocus="" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()"/>
+</header>
+
+<section class="main" *ngIf="todos.length > 0">
+<ul class="todo-list">
+    <li *ngFor="let todo of todos">
+         <div class="view" [class.checked]="todo.complete">
+            <label (click)="toggleTodoComplete(todo)">{{todo.title}}</label>
+            <mat-icon (click)="deleteTodoById(todo)">delete_sweep</mat-icon>
+        </div>
+    </li>
+</ul>
+</section>
+
+<footer class="footer" *ngIf="todos.length > 0">
+    <span class="todo-count-not-completed"><strong>{{numberOfTodoNotYetCompleted}}/{{todos.length}}</strong> {{numberOfTodoNotYetCompleted <= 1 ? 'item': 'items'}} left</span>
+</footer>
+
+
